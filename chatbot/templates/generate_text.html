@@ -1,0 +1,29 @@
+<h2>AI-Powered Chatbot</h2>
+<h3>Speak to your favorite character from any franchise</h3>
+<form method="post">
+    <!-- This token ensures that the request is coming from the same site. -->
+    {% csrf_token %}
+
+    <!-- Input for character choice -->
+    <label for="charcter_choice">Enter the character you want to speak with:</label><br>
+    <textarea name="charcter_choice" rows="1" cols="50">{{ request.POST.charcter_choice }}</textarea><br><br>
+
+    <!-- Input for associated media -->
+    <label for="media">Enter the name of the movie/book/etc The character is from:</label><br>
+    <textarea name="media" rows="1" cols="50">{{ request.POST.media }}</textarea><br><br>
+
+    <!-- Input for user text -->
+    <label for="user_input">Enter your text:</label><br>
+    <textarea name="user_input" rows="4" cols="50">{{ request.POST.user_input }}</textarea><br><br>
+
+    <!-- Submit button to generate content -->
+    <input type="submit" value="Generate">
+</form>
+
+<!-- Display generated text if user input exists -->
+{% if user_input %}
+    <h3>{{ request.POST.charcter_choice }} Says:</h3>
+    <p>{{ generated_text }}</p>
+    <h3>Media: {{ request.POST.media }}</h3>
+    <h3>Character: {{ request.POST.charcter_choice }}</h3>
+{% endif %}
