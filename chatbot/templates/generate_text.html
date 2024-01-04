@@ -1,10 +1,22 @@
-<h2>AI-Powered Chatbot</h2>
+{% extends "master.html" %}
+
+{% block title %}
+   AI Roleplayer
+{% endblock %}
+
+{% block content %}
+<div class="page-title">
+<h2>AI Roleplayer Chatbot</h2>
 <h3>Speak to your favorite character from any franchise</h3>
+</div>
+
+
 <form method="post">
     <!-- This token ensures that the request is coming from the same site. -->
     {% csrf_token %}
 
     <!-- Input for character choice -->
+    <div class="choices">
     <label for="charcter_choice">Enter the character you want to speak with:</label><br>
     <textarea name="charcter_choice" rows="1" cols="50">{{ request.POST.charcter_choice }}</textarea><br><br>
 
@@ -17,11 +29,17 @@
     <textarea name="user_input" rows="4" cols="50">{{ request.POST.user_input }}</textarea><br><br>
 
     <!-- Submit button to generate content -->
-    <input type="submit" value="Generate">
+    <button type="submit" value="Generate">Generate Response</button>
+     </div>
 </form>
 
 <!-- Display generated text if user input exists -->
+<div class="response">
 {% if user_input %}
-    <h3>{{ request.POST.charcter_choice }} Says:</h3>
+
+    <h3><span>{{ request.POST.charcter_choice }}</span> Says:</h3>
     <p>{{ generated_text }}</p>
 {% endif %}
+
+</div>
+{% endblock %}
