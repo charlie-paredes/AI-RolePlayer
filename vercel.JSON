@@ -1,13 +1,13 @@
 {
     "builds": [{
-        "src": "AI-RolePlayer/wsgi.py",
+        "src": "gpt_site/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     }],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "AI-RolePlayer/wsgi.py"
+            "dest": "gpt_site/wsgi.py"
         }
     ]
 }
